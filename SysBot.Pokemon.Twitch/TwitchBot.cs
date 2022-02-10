@@ -77,6 +77,8 @@ namespace SysBot.Pokemon.Twitch
 
             EchoUtil.Forwarders.Add(msg => client.SendMessage(Channel, msg));
 
+            RequestUtil<T>.Prefix = settings.CommandPrefix.ToString();
+
             // Turn on if verified
             // Hub.Queues.Forwarders.Add((bot, detail) => client.SendMessage(Channel, $"{bot.Connection.Name} is now trading (ID {detail.ID}) {detail.Trainer.TrainerName}"));
         }
@@ -207,9 +209,9 @@ namespace SysBot.Pokemon.Twitch
             switch (c)
             {
                 // User Usable Commands
-                //case "trade":
-                //    _ = TwitchCommandsHelper<T>.AddToWaitingList(args, m.DisplayName, m.Username, ulong.Parse(m.UserId), subscriber(), false, out string msg);
-                //    return msg;
+                case "trade":
+                    _ = TwitchCommandsHelper<T>.AddToWaitingList(args, m.DisplayName, m.Username, ulong.Parse(m.UserId), subscriber(), false, out string msg);
+                    return msg;
                 case "request":
                     _ = TwitchCommandsHelper<T>.AddToWaitingList(args, m.DisplayName, m.Username, ulong.Parse(m.UserId), subscriber(), true, out string msgreq);
                     return msgreq;
