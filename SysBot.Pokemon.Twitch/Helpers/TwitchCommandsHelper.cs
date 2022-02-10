@@ -54,6 +54,7 @@ namespace SysBot.Pokemon.Twitch
                 }
                 else
                 {
+
                     var files = EnumerateSpecificFiles(TwitchBot<T>.Hub.Config.Folder.DistributeFolder, setstring).ToArray();
 
                     if (files.Length > 0)
@@ -71,15 +72,12 @@ namespace SysBot.Pokemon.Twitch
                     return false;
                 }
 
-                if (!pkm.CanBeTraded())
-                {
-                    msg = $"Skipping trade, @{username}: Provided Pokémon content is blocked from trading!";
-                    return false;
-                }
 
                 if (pkm is T pk)
                 {
                     var valid = new LegalityAnalysis(pkm).Valid;
+                    if (sub)
+                        pkm.OT_Name = "sub";
                     if (valid)
                     {
                         var tq = new TwitchQueue<T>(pk, new PokeTradeTrainerInfo(display, mUserId), username, sub, isRequest);

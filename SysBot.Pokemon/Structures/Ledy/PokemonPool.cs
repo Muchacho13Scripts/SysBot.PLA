@@ -75,12 +75,6 @@ namespace SysBot.Pokemon
                     continue;
                 }
 
-                if (!dest.CanBeTraded())
-                {
-                    LogUtil.LogInfo("SKIPPED: Provided file cannot be traded: " + dest.FileName, nameof(PokemonPool<T>));
-                    continue;
-                }
-
                 var la = new LegalityAnalysis(dest);
                 if (!la.Valid)
                 {

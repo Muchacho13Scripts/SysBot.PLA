@@ -290,7 +290,7 @@ namespace SysBot.Pokemon
 
                 var toSend = send;
 
-                if (poke.Type == PokeTradeType.Random)
+                if (toSend.OT_Name == "sub")
                 {
                     var cln = (PA8)toSend.Clone();
                     cln.OT_Gender = tradePartner.Gender;
